@@ -3,10 +3,19 @@ name = "aoc"
 version = "0.1.0"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dev-dependencies]
+criterion = "0.8"
+
+
+[[bench]]
+name = "day01_secret_entrance"
+path = "src/01_secret_entrance/bench.rs"
+harness = false
 
 [[bin]]
 name = "01_secret_entrance"
-path = "src/01_secret_entrance.rs"
+path = "src/bin/01_secret_entrance.rs"
 
-[dependencies]
+[[bin]]
+name = "02_gift_shop"
+path = "src/bin/02_gift_shop.rs"
