@@ -4,13 +4,13 @@ use aoc::secret_entrance;
 fn bench_secret_entrance(c: &mut Criterion) {
     let input = include_str!("input");
 
-    c.bench_function("01_part1", |b| {
+    c.bench_function("01_secret_entrance_part1", |b| {
         b.iter(|| {
             secret_entrance::part_1(input);
         })
     });
 
-    c.bench_function("01_part2", |b| {
+    c.bench_function("01_secret_entrance_part2", |b| {
         b.iter(|| {
             secret_entrance::part_2(input);
         })
