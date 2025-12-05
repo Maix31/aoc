@@ -9,3 +9,6 @@ pub mod lobby;
 
 #[path = "04_printing_department/mod.rs"]
 pub mod printing_department;
+
+#[path = "05_cafeteria/mod.rs"]
+pub mod cafeteria;
