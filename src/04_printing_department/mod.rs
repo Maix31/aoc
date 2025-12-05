@@ -1,4 +1,4 @@
-﻿#[derive(Debug)]
+﻿#[derive(Debug, Copy, Clone)]
 enum Tile {
     Empty,
     ToiletPaper,
@@ -53,12 +53,16 @@ impl Map {
         self.data[index] = Tile::Accessible;
     }
 
-    fn to_string(&self) -> String{
+    fn set(&mut self, x: usize, y: usize, tile: Tile) {
+        let index = x + self.w * y;
+        self.data[index] = tile;
+    }
+
+    fn to_string(&self) -> String {
         let mut string = String::new();
         for chunk in self.data.as_slice().chunks(self.w) {
             for tile in chunk.iter() {
-                string.push(
-                match tile {
+                string.push(match tile {
                     Tile::Empty => '.',
                     Tile::ToiletPaper => '@',
                     Tile::Accessible => 'x',
@@ -74,55 +78,103 @@ impl Map {
         let y = y as i64;
         [
             self.at(x - 1, y - 1),
-            self.at(x,     y - 1),
+            self.at(x, y - 1),
             self.at(x + 1, y - 1),
             self.at(x - 1, y),
             self.at(x + 1, y),
             self.at(x - 1, y + 1),
-            self.at(x,     y + 1),
+            self.at(x, y + 1),
             self.at(x + 1, y + 1),
         ]
     }
 
     fn can_access(&self, x: usize, y: usize) -> bool {
-        // neighbours() returns [Option<&Tile>; 8]
-        // into_iter() -> Iterator<Item = Option<&Tile>>
         self.neighbours(x, y)
             .into_iter()
             .filter(|t| matches!(t, Some(Tile::ToiletPaper)))
             .count()
-            < 5
+            < 4
     }
 }
 
-fn find_printing_department_part_1(input: &str) -> usize {
+fn find_accessible_toilet_papers_part_1(input: &str) -> usize {
     let map = Map::new(input);
     let mut new_map = Map::new(input);
     let result = (0..map.h)
-        .map(|y| (0..map.w).filter(|&x| {
-            let can_access = map.can_access(x, y);
-            if can_access {
-                new_map.set_accessible(x, y);
-            }
-            can_access
-        }).count())
+        .map(|y| {
+            (0..map.w)
+                .filter(|&x| {
+                    if let Some(Tile::ToiletPaper) = map.at(x as i64, y as i64) {
+                        let can_access = map.can_access(x, y);
+                        if can_access {
+                            new_map.set_accessible(x, y);
+                        }
+                        can_access
+                    } else {
+                        false
+                    }
+                })
+                .count()
+        })
         .sum();
 
-    print!("{}", map.to_string());
+    // print!("{}", new_map.to_string());
 
     result
 }
 
-fn find_printing_department_part_2(_input: &str) -> u64 {
-    0
+fn find_accessible_toilet_papers_part_2(input: &str) -> usize {
+    let mut map = Map::new(input);
+    let mut new_map = Map::new(input);
+
+    // println!("{}", map.to_string());
+
+    let mut answer: usize = 0;
+
+    for _ in 0..1000 {
+        let mut changed_this_round = 0usize;
+
+        for y in 0..map.h {
+            for x in 0..map.w {
+                let tile = map.at(x as i64, y as i64).unwrap();
+
+                let new_tile = match *tile {
+                    Tile::ToiletPaper => {
+                        if map.can_access(x, y) {
+                            changed_this_round += 1;
+                            Tile::Empty
+                        } else {
+                            Tile::ToiletPaper
+                        }
+                    }
+                    Tile::Empty => Tile::Empty,
+                    Tile::Accessible => Tile::Accessible,
+                };
+
+                new_map.set(x, y, new_tile);
+            }
+        }
+
+        // println!("{}", new_map.to_string());
+
+        answer += changed_this_round;
+
+        if changed_this_round == 0 {
+            break;
+        }
+
+        std::mem::swap(&mut map, &mut new_map);
+    }
+
+    answer
 }
 
 pub fn part_1(input: &str) -> usize {
-    find_printing_department_part_1(input)
+    find_accessible_toilet_papers_part_1(input)
 }
 
-pub fn part_2(input: &str) -> u64 {
-    find_printing_department_part_2(input)
+pub fn part_2(input: &str) -> usize {
+    find_accessible_toilet_papers_part_2(input)
 }
 
 #[cfg(test)]
