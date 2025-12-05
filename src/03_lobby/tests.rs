@@ -23,7 +23,7 @@ fn test_find_invalid_part_1() {
 
 #[test]
 fn test_find_invalid_part_2() {
-    let mut map = &mut HashMap::<(&str, u32), u64>::new();
+    let map = &mut HashMap::<(&str, u32), u64>::new();
     assert_eq!(lobby::find_max_joltage_part_2("111111123456789", 2, map), 89);
     
     let cases = [

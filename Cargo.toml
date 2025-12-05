@@ -22,6 +22,11 @@ name = "03_lobby"
 path = "src/03_lobby/bench.rs"
 harness = false
 
+[[bench]]
+name = "04_printing_department"
+path = "src/04_printing_department/bench.rs"
+harness = false
+
 ## Binaries
 [[bin]]
 name = "01_secret_entrance"
@@ -34,3 +39,7 @@ path = "src/bin/02_gift_shop.rs"
 [[bin]]
 name = "03_lobby"
 path = "src/bin/03_lobby.rs"
+
+[[bin]]
+name = "04_printing_department"
+path = "src/bin/04_printing_department.rs"
