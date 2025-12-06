@@ -12,3 +12,6 @@ pub mod printing_department;
 
 #[path = "05_cafeteria/mod.rs"]
 pub mod cafeteria;
+
+#[path = "06_trash_compactor/mod.rs"]
+pub mod trash_compactor;
