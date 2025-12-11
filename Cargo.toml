@@ -37,6 +37,11 @@ name = "06_trash_compactor"
 path = "src/06_trash_compactor/bench.rs"
 harness = false
 
+[[bench]]
+name = "07_laboratories"
+path = "src/07_laboratories/bench.rs"
+harness = false
+
 ## Binaries
 [[bin]]
 name = "01_secret_entrance"
@@ -61,3 +66,7 @@ path = "src/bin/05_cafeteria.rs"
 [[bin]]
 name = "06_trash_compactor"
 path = "src/bin/06_trash_compactor.rs"
+
+[[bin]]
+name = "07_laboratories"
+path = "src/bin/07_laboratories.rs"
