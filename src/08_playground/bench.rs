@@ -1,18 +1,18 @@
-use aoc::laboratories;
+use aoc::playground;
 use criterion::{criterion_group, criterion_main, Criterion};
 
 fn bench_lobby(c: &mut Criterion) {
     let input = include_str!("input");
 
-    c.bench_function("07_laboratories_1", |b| {
+    c.bench_function("08_playground_1", |b| {
         b.iter(|| {
-            laboratories::part_1(input);
+            playground::part_1(input);
         })
     });
 
-    c.bench_function("07_laboratories_2", |b| {
+    c.bench_function("08_playground_2", |b| {
         b.iter(|| {
-            laboratories::part_2(input);
+            playground::part_2(input);
         })
     });
 }

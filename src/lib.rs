@@ -18,3 +18,6 @@ pub mod trash_compactor;
 
 #[path = "07_laboratories/mod.rs"]
 pub mod laboratories;
+
+#[path = "08_playground/mod.rs"]
+pub mod playground;
