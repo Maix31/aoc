@@ -21,3 +21,6 @@ pub mod laboratories;
 
 #[path = "08_playground/mod.rs"]
 pub mod playground;
+
+#[path = "09_movie_theater/mod.rs"]
+pub mod movie_theater;
