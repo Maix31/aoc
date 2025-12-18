@@ -24,3 +24,6 @@ pub mod playground;
 
 #[path = "09_movie_theater/mod.rs"]
 pub mod movie_theater;
+
+#[path = "10_factory/mod.rs"]
+pub mod factory;

@@ -52,6 +52,11 @@ name = "09_movie_theater"
 path = "src/09_movie_theater/bench.rs"
 harness = false
 
+[[bench]]
+name = "10_factory"
+path = "src/10_factory/bench.rs"
+harness = false
+
 ## Binaries
 [[bin]]
 name = "01_secret_entrance"
@@ -88,3 +93,7 @@ path = "src/bin/08_playground.rs"
 [[bin]]
 name = "09_movie_theater"
 path = "src/bin/09_movie_theater.rs"
+
+[[bin]]
+name = "10_factory"
+path = "src/bin/10_factory.rs"
