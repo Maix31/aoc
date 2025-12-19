@@ -27,3 +27,6 @@ pub mod movie_theater;
 
 #[path = "10_factory/mod.rs"]
 pub mod factory;
+
+#[path = "11_reactor/mod.rs"]
+pub mod reactor;
